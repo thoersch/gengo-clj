@@ -11,7 +11,21 @@ With [Leiningen](http://github.com/technomancy/leiningen) installed:
 
 ## Installing
 
-The gengo-clj library can be installed as a dependency from [Clojars](http://clojars.org/gengo-clj)
+The gengo-clj library can be installed as a dependency from [Clojars](https://clojars.org/gengoclj)
+
+    [gengoclj "0.1.0-SNAPSHOT"]
+
+Or gradle
+
+    compile "gengoclj:gengoclj:0.1.0-SNAPSHOT"
+
+Or maven
+
+    <dependency>
+      <groupId>gengoclj</groupId>
+      <artifactId>gengoclj</artifactId>
+      <version>0.1.0-SNAPSHOT</version>
+    </dependency>
 
 ## Usage
 
@@ -52,7 +66,10 @@ There's also a struct for a job since it's a common argument:
     (defstruct job :slug :body_src :lc_src :lc_tgt :tier)
 
 It contains only the required parts, but other options include:
+
     :force :comment :use_preferred :callback_url :auto_approve :custom_data :position :glossary_id :max_char
+
+Otherwise, here is the [Official Documentation](http://thoersch.github.io/gengo-clj)
 
 ## Questions or Comments
 
@@ -61,6 +78,10 @@ It contains only the required parts, but other options include:
  If you come across any issues, please file them on the [Github project issue tracker](https://github.com/thoersch/gengo-clj/issues).
 
 ## Documentation
+
+Check out [gengo-clj docs](http://thoersch.github.io/gengo-clj/)
+
+or
 
 Check out the full [Gengo API Documentation](http://developers.gengo.com/).
 
