@@ -28,24 +28,25 @@ Or maven
     </dependency>
 
 ## Usage
+```el
+(use 'gengoclj.gengo)
 
-    (use 'gengoclj.gengo)
+(def is-sandbox? true)
 
-    (def is-sandbox? true)
+;; get jobs by order id
+(with-gengo ["gengo-key" "gengo-secret" is-sandbox?]
+  (get-order-jobs 123456789))
 
-    ;; get jobs by order id
-    (with-gengo ["gengo-key" "gengo-secret" is-sandbox?]
-      (get-order-jobs 123456789))
+;;=> {:opstat "ok", :response {:order {:total_credits "0.15", :jobs_pending [], :total_jobs "2", :jobs_available ["123" "456"],:total_units "3", :jobs_queued "0", :currency "USD", :order_id "123456789", :as_group 1, :jobs_revising [], :jobs_reviewable [], :jobs_approved []}}}
 
-    ;;=> {:opstat "ok", :response {:order {:total_credits "0.15", :jobs_pending [], :total_jobs "2", :jobs_available ["123" "456"],:total_units "3", :jobs_queued "0", :currency "USD", :order_id "123456789", :as_group 1, :jobs_revising [], :jobs_reviewable [], :jobs_approved []}}}
+;; send new translations
+(with-gengo ["gengo-key" "gengo-secret" is-sandbox?]
+  (let [job1 (struct job "slug1" "content1" "en" "es" "standard")
+        job2 (struct job "slug2" "content2" "en" "es" "standard")]
+    (post-translation-jobs '(job1 job2) true)))
 
-    ;; send new translations
-    (with-gengo ["gengo-key" "gengo-secret" is-sandbox?]
-      (let [job1 (struct job "slug1" "content1" "en" "es" "standard")
-            job2 (struct job "slug2" "content2" "en" "es" "standard")]
-          (post-translation-jobs '(job1 job2) true)))
-
-    ;;=> {:opstat "ok", :response {:group_id "1234", :order_id "5678", :job_count 2, :credits_used "0.20", :currency "USD"}}
+;;=> {:opstat "ok", :response {:group_id "1234", :order_id "5678", :job_count 2, :credits_used "0.20", :currency "USD"}}
+```
 
 with-gengo macro is going to give you the wrapper for running any command you need to within gengo-clj.
 
@@ -74,7 +75,9 @@ Here is the list of supported functions:
 
 There's also a struct for a job since it's a common argument:
 
+```el
     (defstruct job :slug :body_src :lc_src :lc_tgt :tier)
+```
 
 It contains only the required parts, but other options include:
 
