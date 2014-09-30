@@ -13,7 +13,9 @@ With [Leiningen](http://github.com/technomancy/leiningen) installed:
 
 The gengo-clj library can be installed as a dependency from [Clojars](https://clojars.org/gengoclj)
 
+```el
     [gengoclj "0.1.0-SNAPSHOT"]
+```
 
 Or gradle
 
